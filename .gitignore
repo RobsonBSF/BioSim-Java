@@ -25,3 +25,12 @@ replay_pid*
 
 # VS Code
 .vscode/
+
+# Maven
+target/
+
+# Java Extension Pack
+.project
+.classpath
+.settings/
+bin/
