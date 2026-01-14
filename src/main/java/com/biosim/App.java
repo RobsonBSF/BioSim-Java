@@ -1,13 +1,12 @@
 package com.biosim;
 
-import com.biosim.models.World;
-import com.biosim.views.SimulationView;
+import com.biosim.controllers.SimulationController;
 
 public class App {
     public static void main( String[] args ) {
 
-        World world = new World(15, 15);
+        SimulationController controller = new SimulationController();
 
-        SimulationView.renderMap(world);
+        controller.startSimulation(15, 15);
     }
 }
