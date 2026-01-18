@@ -9,6 +9,21 @@ public class SimulationController {
 
         World world = new World(rows, columns);
 
-        SimulationView.renderMap(world);
+        int currentSimTime = 0;
+
+        // Simulation loop
+        while (currentSimTime < 10) {
+
+            SimulationView.clearMap();
+            SimulationView.renderMap(world);
+
+            try {
+                Thread.sleep(1000); // 1 second delay
+            } catch (InterruptedException e) {
+                System.err.println("Simulation interrupted");
+            }
+
+            currentSimTime++;
+        }
     }
 }

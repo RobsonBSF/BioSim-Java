@@ -22,4 +22,10 @@ public class SimulationView {
             }
         }
     }
+
+    // Clears the rendered map in terminal
+    public static void clearMap() {
+        System.out.print("\033[H\033[2J\033[3J");
+        System.out.flush();
+    }
 }
