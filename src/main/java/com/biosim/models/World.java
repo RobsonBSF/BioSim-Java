@@ -7,14 +7,14 @@ public class World {
     private int columns;
     
     // Creates a World Map
-    private int[][] tileMap;
+    private Agent[][] tileMap;
 
     // Constructor
     public World(int rows, int columns) {
         setRows(rows);
         setColumns(columns);
 
-        setTileMap(new int[rows][columns]);
+        setTileMap(new Agent[rows][columns]);
     }
 
     // Getters and Setters
@@ -26,7 +26,7 @@ public class World {
         return columns;
     }
 
-    public int[][] getTileMap() {
+    public Agent[][] getTileMap() {
         return tileMap;
     }
 
@@ -38,12 +38,16 @@ public class World {
         this.columns = columns;
     }
 
-    public void setTileMap(int[][] tileMap) {
+    public void setTileMap(Agent[][] tileMap) {
         this.tileMap = tileMap;
     }
 
     // Other Methods
-    public void updatePosition(int x, int y, int value) {
-        getTileMap()[x][y] = value;
+    public void updatePosition(Agent agent) {
+
+        int x = agent.getxPos();
+        int y = agent.getyPos();
+        
+        getTileMap()[x][y] = agent;
     }
 }
