@@ -69,4 +69,9 @@ public class Agent {
         setxPos(x + randomX);
         setyPos(y + randomY);
     }
+
+    public void move(int x, int y) {
+        setxPos(x);
+        setyPos(y);
+    }
 }

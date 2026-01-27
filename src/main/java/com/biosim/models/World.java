@@ -56,29 +56,36 @@ public class World {
     public void updatePosition(Agent agent) {
 
         // cleans last agent position
-        int x = agent.getxPos();
-        int y = agent.getyPos();
-        getTileMap()[x][y] = null;
+        int lastX = agent.getxPos();
+        int lastY = agent.getyPos();
+        getTileMap()[lastX][lastY] = null;
 
         // moves the agent to a new position
         agent.move();
 
-        x = agent.getxPos();
-        y = agent.getyPos();
-        getTileMap()[x][y] = agent;
+        int newX = agent.getxPos();
+        int newY = agent.getyPos();
+
+        // verifies if new position is out of bounds
+        if (newX >= 0 && newX < rows && newY >= 0 && newY < columns) {
+            getTileMap()[newX][newY] = agent;
+        } else {
+            agent.move(lastX, lastY);
+            getTileMap()[lastX][lastY] = agent;
+        }
     }
 
     public void addAgent() {
 
         Random random = new Random();
 
-        int randX = random.nextInt(-1, (rows + 1));
-        int randY = random.nextInt(-1, (columns + 1));
+        int randX = random.nextInt(0, rows);
+        int randY = random.nextInt(0, columns);
 
         Agent agent = new Agent(randX, randY);
 
         activeAgents.add(agent);
 
-        updatePosition(agent);
+        getTileMap()[randX][randY] = agent;
     }
 }
