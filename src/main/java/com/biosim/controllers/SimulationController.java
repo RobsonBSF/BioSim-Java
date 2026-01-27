@@ -22,7 +22,6 @@ public class SimulationController {
 
             // Updates active agents position
             for (Agent a : world.getActiveAgents()) {
-                a.move();
                 world.updatePosition(a);
             }
 

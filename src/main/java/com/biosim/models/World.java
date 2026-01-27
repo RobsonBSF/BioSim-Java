@@ -55,9 +55,16 @@ public class World {
     // Other Methods
     public void updatePosition(Agent agent) {
 
+        // cleans last agent position
         int x = agent.getxPos();
         int y = agent.getyPos();
-        
+        getTileMap()[x][y] = null;
+
+        // moves the agent to a new position
+        agent.move();
+
+        x = agent.getxPos();
+        y = agent.getyPos();
         getTileMap()[x][y] = agent;
     }
 
