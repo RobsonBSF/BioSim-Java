@@ -1,5 +1,8 @@
 package com.biosim.models;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class World {
 
     // width & height of the map
@@ -8,6 +11,9 @@ public class World {
     
     // Creates a World Map
     private Agent[][] tileMap;
+
+    // Agent List
+    private ArrayList<Agent> activeAgents = new ArrayList<Agent>();
 
     // Constructor
     public World(int rows, int columns) {
@@ -30,6 +36,10 @@ public class World {
         return tileMap;
     }
 
+    public ArrayList<Agent> getActiveAgents() {
+        return activeAgents;
+    }
+
     private void setRows(int rows) {
         this.rows = rows;
     }
@@ -49,5 +59,19 @@ public class World {
         int y = agent.getyPos();
         
         getTileMap()[x][y] = agent;
+    }
+
+    public void addAgent() {
+
+        Random random = new Random();
+
+        int randX = random.nextInt(-1, (rows + 1));
+        int randY = random.nextInt(-1, (columns + 1));
+
+        Agent agent = new Agent(randX, randY);
+
+        activeAgents.add(agent);
+
+        updatePosition(agent);
     }
 }

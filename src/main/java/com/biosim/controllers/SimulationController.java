@@ -1,6 +1,7 @@
 package com.biosim.controllers;
 
 import com.biosim.models.World;
+import com.biosim.models.Agent;
 import com.biosim.views.SimulationView;
 
 public class SimulationController {
@@ -9,6 +10,8 @@ public class SimulationController {
 
         World world = new World(rows, columns);
 
+        world.addAgent();
+
         int currentSimTime = 0;
 
         // Simulation loop
@@ -16,6 +19,12 @@ public class SimulationController {
 
             SimulationView.clearMap();
             SimulationView.renderMap(world);
+
+            // Updates active agents position
+            for (Agent a : world.getActiveAgents()) {
+                a.move();
+                world.updatePosition(a);
+            }
 
             try {
                 Thread.sleep(1000); // 1 second delay
