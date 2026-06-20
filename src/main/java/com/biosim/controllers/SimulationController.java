@@ -42,9 +42,9 @@ public class SimulationController {
 
             // Adds new agents each X cicles
             if (currentSimTime % refreshInXCicles == 0) {
-                world.addPlants(1);
-                world.addHerbivores(1);
-                world.addCarnivores(1);
+                world.addPlants(numPlants);
+                world.addHerbivores(numHerbivores);
+                world.addCarnivores(numCarnivores);
             }
 
             world.removeFromRemoveList();
