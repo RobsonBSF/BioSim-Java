@@ -2,56 +2,22 @@ package com.biosim.models;
 
 import java.util.Random;
 
-public class Agent {
+public class Agent extends WorldEntity {
 
-    // Map position
-    private int xPos;
-    private int yPos;
-
-    // Base atributes
-    private int life;
-    private int hunger;
+    // Base attribute
+    private int hungerLvl = 100; // MAX: 100
 
     // Constructor
     public Agent(int x, int y) {
-        setxPos(x);
-        setyPos(y);
-
-        setLife(100);
-        setHunger(100);
+        super(x, y);
     }
 
-    // Getters and Setters
-    public int getxPos() {
-        return xPos;
-    }
-
-    public int getyPos() {
-        return yPos;
-    }
-
-    public int getLife() {
-        return life;
-    }
-
-    public int getHunger() {
-        return hunger;
-    }
-
-    private void setxPos(int xPos) {
-        this.xPos = xPos;
-    }
-
-    private void setyPos(int yPos) {
-        this.yPos = yPos;
-    }
-
-    private void setLife(int life) {
-        this.life = life;
-    }
+     public int getHunger() {
+         return hungerLvl;
+     }
 
     private void setHunger(int hunger) {
-        this.hunger = hunger;
+        this.hungerLvl = hunger;
     }
 
     // Other Methods
@@ -73,5 +39,17 @@ public class Agent {
     public void move(int x, int y) {
         setxPos(x);
         setyPos(y);
+    }
+
+    public void eat() {
+        if (this.hungerLvl + 20 <= 100) {
+            setHunger(hungerLvl += 20);
+        }
+    }
+
+    public void decayHunger() {
+        if (this.hungerLvl - 5 >= 0) {
+            setHunger(hungerLvl -= 5);
+        }  
     }
 }
